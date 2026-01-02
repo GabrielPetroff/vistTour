@@ -1,0 +1,35 @@
+{
+  "destinations": [
+    {
+      "id": 1,
+      "name": "o. Лефкада",
+      "country": "Гърция",
+      "price": "€199",
+      "duration": "7 дни",
+      "description": "The city of lights and love, known for its art, fashion, and culture.",
+      "images": [
+        "/johnny-africa-WG7yn5Wi7ww-unsplash (1).jpg",
+        "/maria-ivanova-TbhkJftacjc-unsplash.jpg",
+        "/henrique-ferreira-RKsLQoSnuTc-unsplash.jpg"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Белград",
+      "country": "Сърбия",
+      "price": "€399",
+      "duration": "3 дни",
+      "description": "A bustling metropolis that blends the ultramodern with traditional culture.",
+      "images": ["/maria-ivanova-TbhkJftacjc-unsplash.jpg"]
+    },
+    {
+      "id": 3,
+      "name": "Венеция",
+      "country": "Италия",
+      "price": "€499",
+      "duration": "5 дни",
+      "description": "The city that never sleeps, famous for its skyline, Broadway shows, and diverse culture.",
+      "images": ["/henrique-ferreira-RKsLQoSnuTc-unsplash.jpg"]
+    }
+  ]
+}
