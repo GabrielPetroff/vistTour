@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Heart, Clock, Star, MapPin } from 'lucide-react';
+import jsonData from '../../data/data.json';
 
 export default function DestinationPage() {
   const { id } = useParams();
@@ -62,29 +63,21 @@ export default function DestinationPage() {
   }, [isModalOpen, currentImageIndex, destination]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('../src/data/data.json');
-        if (!response.ok) {
-          throw new Error('Failed to load data.json');
-        }
-        const jsonData = await response.json();
-        const foundDestination = jsonData.destinations.find(
-          (dest) => dest.id === parseInt(id)
-        );
-        if (!foundDestination) {
-          throw new Error('Destination not found');
-        }
-        setDestination(foundDestination);
-        setError(null);
-      } catch (err) {
-        setError(err.message);
-        console.error('Error loading data:', err);
-      } finally {
-        setLoading(false);
+    try {
+      const foundDestination = jsonData.destinations.find(
+        (dest) => dest.id === parseInt(id)
+      );
+      if (!foundDestination) {
+        throw new Error('Destination not found');
       }
-    };
-    fetchData();
+      setDestination(foundDestination);
+      setError(null);
+    } catch (err) {
+      setError(err.message);
+      console.error('Error loading data:', err);
+    } finally {
+      setLoading(false);
+    }
   }, [id]);
 
   if (loading) {

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Clock } from 'lucide-react';
+import jsonData from '../../data/data.json';
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState('flights');
@@ -14,25 +15,16 @@ export default function HomePage() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('../src/data/data.json');
-        if (!response.ok) {
-          throw new Error('Failed to load data.json');
-        }
-        const jsonData = await response.json();
-        setDestinations(jsonData.destinations);
-        setError(null);
-      } catch (err) {
-        setError(err.message);
-        console.error('Error loading data:', err);
-      } finally {
-        setLoading(false);
-        console.log(destinations);
-      }
-    };
-    fetchData();
-  }, [destinations]);
+    try {
+      setDestinations(jsonData.destinations);
+      setError(null);
+    } catch (err) {
+      setError(err.message);
+      console.error('Error loading data:', err);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   if (loading) {
     return (
