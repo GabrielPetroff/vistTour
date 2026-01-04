@@ -1,9 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Clock } from 'lucide-react';
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState('flights');
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+  const sliderRef = useRef(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [destinations, setDestinations] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -92,6 +96,26 @@ export default function HomePage() {
       desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     },
   ];
+
+  const handleSlideChange = (newIndex) => {
+    if (newIndex >= 0 && newIndex < destinations.length) {
+      setCurrentSlide(newIndex);
+    }
+  };
+
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = (e) => {
+    setTouchEnd(e.changedTouches[0].clientX);
+    if (touchStart - e.changedTouches[0].clientX > 75) {
+      handleSlideChange(currentSlide + 1);
+    }
+    if (e.changedTouches[0].clientX - touchStart > 75) {
+      handleSlideChange(currentSlide - 1);
+    }
+  };
   return (
     <div className="flex flex-col bg-gray-100">
       {/* Hero Section */}
@@ -172,7 +196,188 @@ export default function HomePage() {
         </div>
       </div> */}
       {/* Popular Destinations */}
-      <section className="py-8 sm:py-16 px-4 sm:px-8 bg-white">
+      {/* Explore Popular Destinations */}
+      <section className="py-8 md:py-12 lg:py-16 px-4 md:px-8 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 md:mb-8 gap-4">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800">
+              Explore Our Popular Destinations
+            </h2>
+            <div className="hidden md:flex gap-3 lg:gap-5 flex-row">
+              <button
+                onClick={() => handleSlideChange(currentSlide - 1)}
+                disabled={currentSlide === 0}
+                className="relative w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center disabled:opacity-40 disabled:cursor-not-allowed transition-opacity"
+              >
+                <div className="absolute inset-0 bg-gray-200 rounded-full" />
+                <div className="relative flex items-center justify-center">
+                  <svg
+                    className="w-4 h-4 lg:w-5 lg:h-5 text-gray-800 opacity-60 rotate-180"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </div>
+              </button>
+              <button
+                onClick={() => handleSlideChange(currentSlide + 1)}
+                disabled={currentSlide >= destinations.length - 1}
+                className="relative w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center disabled:opacity-40 disabled:cursor-not-allowed transition-opacity"
+              >
+                <div className="absolute inset-0 bg-orange-500 rounded-full" />
+                <div className="relative flex items-center justify-center">
+                  <svg
+                    className="w-4 h-4 lg:w-5 lg:h-5 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          {/* Desktop/Tablet Carousel View */}
+          <div className="hidden md:block overflow-hidden">
+            <div
+              className="flex transition-transform duration-500 ease-in-out gap-4 lg:gap-6"
+              style={{ transform: `translateX(-${currentSlide * (100 / 1)}%)` }}
+            >
+              {destinations.map((dest) => (
+                <Link
+                  key={dest.id}
+                  to={`/destination/${dest.id}`}
+                  className="flex-shrink-0 w-full md:w-[calc(50%-8px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(25%-18px)] flex flex-col gap-3 md:gap-4 group"
+                >
+                  <div className="w-full h-64 md:h-72 lg:h-80 xl:h-96 rounded-2xl lg:rounded-3xl overflow-hidden shadow-md group-hover:shadow-xl transition-shadow">
+                    <img
+                      src={dest.images[0]}
+                      alt={dest.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2 md:gap-3 px-1">
+                    <h3 className="text-xl md:text-2xl font-bold text-gray-800 text-center">
+                      {dest.name}
+                    </h3>
+                    <div className="flex items-center justify-center gap-2">
+                      <span className="text-xs md:text-sm text-gray-600 font-semibold opacity-80">
+                        from
+                      </span>
+                      <span className="text-xl md:text-2xl font-bold text-orange-500">
+                        {dest.price}
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-center gap-4 md:gap-6 lg:gap-8 opacity-60 text-xs md:text-sm">
+                      <div className="flex items-center gap-1">
+                        <span className="text-lg md:text-xl lg:text-2xl">
+                          📅
+                        </span>
+                        <span className="text-orange-500 font-semibold">
+                          EVERY DAY
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <span className="text-lg md:text-xl lg:text-2xl">
+                          👥
+                        </span>
+                        <span className="text-orange-500 font-semibold">
+                          3-10 PP
+                        </span>
+                      </div>
+                    </div>
+                    <p className="text-gray-800 text-sm md:text-base leading-relaxed text-center line-clamp-3">
+                      {dest.description}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile Swipe View */}
+          <div
+            className="md:hidden"
+            ref={sliderRef}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
+            <Link
+              to={`/destination/${destinations[currentSlide].id}`}
+              className="block"
+            >
+              <div className="flex flex-col gap-3 md:gap-4">
+                <div className="w-full h-72 sm:h-80 rounded-2xl overflow-hidden shadow-md">
+                  <img
+                    src={destinations[currentSlide].images[0]}
+                    alt={destinations[currentSlide].name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="flex flex-col gap-2 md:gap-3 px-1">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-800 text-center">
+                    {destinations[currentSlide].name}
+                  </h3>
+                  <div className="flex items-center justify-center gap-2">
+                    <span className="text-xs sm:text-sm text-gray-600 font-semibold opacity-80">
+                      from
+                    </span>
+                    <span className="text-xl sm:text-2xl font-bold text-orange-500">
+                      {destinations[currentSlide].price}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-center gap-6 sm:gap-8 opacity-60 text-xs sm:text-sm">
+                    <div className="flex items-center gap-1">
+                      <span className="text-xl sm:text-2xl">📅</span>
+                      <span className="text-orange-500 font-semibold">
+                        EVERY DAY
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <span className="text-xl sm:text-2xl">👥</span>
+                      <span className="text-orange-500 font-semibold">
+                        3-10 PP
+                      </span>
+                    </div>
+                  </div>
+                  <p className="text-gray-800 text-sm sm:text-base leading-relaxed text-center">
+                    {destinations[currentSlide].description}
+                  </p>
+                </div>
+              </div>
+            </Link>
+            <div className="flex justify-center gap-2 mt-6">
+              {destinations.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`h-2 rounded-full transition-all ${
+                    index === currentSlide
+                      ? 'bg-orange-500 w-8'
+                      : 'bg-gray-300 w-2'
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* <section className="py-8 sm:py-16 px-4 sm:px-8 bg-white">
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif text-center text-black mb-8 sm:mb-12">
           Popular Destinations
         </h2>
@@ -213,7 +418,7 @@ export default function HomePage() {
             </Link>
           ))}
         </div>
-      </section>
+      </section> */}
       {/* Why Us Section */}
       <section className="py-8 sm:py-16 px-4 sm:px-8 bg-gray-50">
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif text-center text-black mb-8 sm:mb-12">

@@ -69,7 +69,7 @@ export default function Layout() {
 
         {/* Main Navigation */}
         <nav className="hidden sm:flex gap-6 lg:gap-12 px-4 sm:px-8 py-6 text-white text-sm lg:text-lg">
-          <a href="#" className="hover:opacity-80">
+          <a href="/" className="hover:opacity-80">
             Home
           </a>
           <a href="#" className="hover:opacity-80">
