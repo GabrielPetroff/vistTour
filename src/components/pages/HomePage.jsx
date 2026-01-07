@@ -195,104 +195,155 @@ export default function HomePage() {
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800">
               Explore Our Popular Destinations
             </h2>
-            <div className="hidden md:flex gap-3 lg:gap-5 flex-row">
-              <button
-                onClick={() => handleSlideChange(currentSlide - 1)}
-                disabled={currentSlide === 0}
-                className="relative w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center disabled:opacity-40 disabled:cursor-not-allowed transition-opacity"
-              >
-                <div className="absolute inset-0 bg-gray-200 rounded-full" />
-                <div className="relative flex items-center justify-center">
-                  <svg
-                    className="w-4 h-4 lg:w-5 lg:h-5 text-gray-800 opacity-60 rotate-180"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </div>
-              </button>
-              <button
-                onClick={() => handleSlideChange(currentSlide + 1)}
-                disabled={currentSlide >= destinations.length - 1}
-                className="relative w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center disabled:opacity-40 disabled:cursor-not-allowed transition-opacity"
-              >
-                <div className="absolute inset-0 bg-orange-500 rounded-full" />
-                <div className="relative flex items-center justify-center">
-                  <svg
-                    className="w-4 h-4 lg:w-5 lg:h-5 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </div>
-              </button>
-            </div>
+            {destinations.length > 4 && (
+              <div className="hidden lg:flex gap-3 lg:gap-5 flex-row">
+                <button
+                  onClick={() => handleSlideChange(currentSlide - 1)}
+                  disabled={currentSlide === 0}
+                  className="relative w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center disabled:opacity-40 disabled:cursor-not-allowed transition-opacity hover:scale-105"
+                >
+                  <div className="absolute inset-0 bg-gray-200 rounded-full" />
+                  <div className="relative flex items-center justify-center">
+                    <svg
+                      className="w-4 h-4 lg:w-5 lg:h-5 text-gray-800 opacity-60 rotate-180"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </div>
+                </button>
+                <button
+                  onClick={() => handleSlideChange(currentSlide + 1)}
+                  disabled={currentSlide >= destinations.length - 4}
+                  className="relative w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center disabled:opacity-40 disabled:cursor-not-allowed transition-opacity hover:scale-105"
+                >
+                  <div className="absolute inset-0 bg-orange-500 rounded-full" />
+                  <div className="relative flex items-center justify-center">
+                    <svg
+                      className="w-4 h-4 lg:w-5 lg:h-5 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </div>
+                </button>
+              </div>
+            )}
           </div>
 
-          {/* Desktop/Tablet Carousel View */}
-          <div className="hidden md:block overflow-hidden">
+          {/* Desktop/Tablet Grid View */}
+          <div className="hidden md:grid md:grid-cols-2 gap-4 lg:hidden">
+            {destinations.map((dest) => (
+              <Link
+                key={dest.id}
+                to={`/destination/${dest.id}`}
+                className="flex flex-col gap-3 md:gap-4 group"
+              >
+                <div className="w-full h-64 md:h-72 rounded-2xl overflow-hidden shadow-md group-hover:shadow-xl transition-shadow">
+                  <img
+                    src={dest.images[0]}
+                    alt={dest.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="flex flex-col gap-2 md:gap-3 px-1">
+                  <h3 className="text-xl md:text-2xl font-bold text-gray-800 text-center">
+                    {dest.name}
+                  </h3>
+                  <div className="flex items-center justify-center gap-2">
+                    <span className="text-xs md:text-sm text-gray-600 font-semibold opacity-80">
+                      from
+                    </span>
+                    <span className="text-xl md:text-2xl font-bold text-orange-500">
+                      {dest.price}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-center gap-4 md:gap-6 lg:gap-8 opacity-60 text-xs md:text-sm">
+                    <div className="flex items-center gap-1">
+                      <span className="text-lg md:text-xl lg:text-2xl">📅</span>
+                      <span className="text-orange-500 font-semibold">
+                        EVERY DAY
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <span className="text-lg md:text-xl lg:text-2xl">👥</span>
+                      <span className="text-orange-500 font-semibold">
+                        3-10 PP
+                      </span>
+                    </div>
+                  </div>
+                  <p className="text-gray-800 text-sm md:text-base leading-relaxed text-center line-clamp-3">
+                    {dest.description}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          {/* Large Screen Carousel View */}
+          <div className="hidden lg:block overflow-hidden">
             <div
-              className="flex transition-transform duration-500 ease-in-out gap-4 lg:gap-6"
-              style={{ transform: `translateX(-${currentSlide * (100 / 1)}%)` }}
+              className="flex transition-transform duration-500 ease-in-out gap-6"
+              style={{
+                transform: `translateX(calc(-${currentSlide * 25}% - ${
+                  currentSlide * 24
+                }px))`,
+              }}
             >
               {destinations.map((dest) => (
                 <Link
                   key={dest.id}
                   to={`/destination/${dest.id}`}
-                  className="flex-shrink-0 w-full md:w-[calc(50%-8px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(25%-18px)] flex flex-col gap-3 md:gap-4 group"
+                  className="flex-shrink-0 w-[calc(25%-18px)] flex flex-col gap-4 group"
                 >
-                  <div className="w-full h-64 md:h-72 lg:h-80 xl:h-96 rounded-2xl lg:rounded-3xl overflow-hidden shadow-md group-hover:shadow-xl transition-shadow">
+                  <div className="w-full h-80 xl:h-96 rounded-3xl overflow-hidden shadow-md group-hover:shadow-xl transition-shadow">
                     <img
                       src={dest.images[0]}
                       alt={dest.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
-                  <div className="flex flex-col gap-2 md:gap-3 px-1">
-                    <h3 className="text-xl md:text-2xl font-bold text-gray-800 text-center">
+                  <div className="flex flex-col gap-3 px-1">
+                    <h3 className="text-2xl font-bold text-gray-800 text-center">
                       {dest.name}
                     </h3>
                     <div className="flex items-center justify-center gap-2">
-                      <span className="text-xs md:text-sm text-gray-600 font-semibold opacity-80">
+                      <span className="text-sm text-gray-600 font-semibold opacity-80">
                         from
                       </span>
-                      <span className="text-xl md:text-2xl font-bold text-orange-500">
+                      <span className="text-2xl font-bold text-orange-500">
                         {dest.price}
                       </span>
                     </div>
-                    <div className="flex items-center justify-center gap-4 md:gap-6 lg:gap-8 opacity-60 text-xs md:text-sm">
+                    <div className="flex items-center justify-center gap-8 opacity-60 text-sm">
                       <div className="flex items-center gap-1">
-                        <span className="text-lg md:text-xl lg:text-2xl">
-                          📅
-                        </span>
+                        <span className="text-2xl">📅</span>
                         <span className="text-orange-500 font-semibold">
                           EVERY DAY
                         </span>
                       </div>
                       <div className="flex items-center gap-1">
-                        <span className="text-lg md:text-xl lg:text-2xl">
-                          👥
-                        </span>
+                        <span className="text-2xl">👥</span>
                         <span className="text-orange-500 font-semibold">
                           3-10 PP
                         </span>
                       </div>
                     </div>
-                    <p className="text-gray-800 text-sm md:text-base leading-relaxed text-center line-clamp-3">
+                    <p className="text-gray-800 text-base leading-relaxed text-center line-clamp-3">
                       {dest.description}
                     </p>
                   </div>
@@ -302,56 +353,61 @@ export default function HomePage() {
           </div>
 
           {/* Mobile Swipe View */}
-          <div
-            className="md:hidden"
-            ref={sliderRef}
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
-          >
-            <Link
-              to={`/destination/${destinations[currentSlide].id}`}
-              className="block"
+          <div className="md:hidden overflow-hidden">
+            <div
+              className="flex transition-transform duration-500 ease-out"
+              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
             >
-              <div className="flex flex-col gap-3 md:gap-4">
-                <div className="w-full h-72 sm:h-80 rounded-2xl overflow-hidden shadow-md">
-                  <img
-                    src={destinations[currentSlide].images[0]}
-                    alt={destinations[currentSlide].name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="flex flex-col gap-2 md:gap-3 px-1">
-                  <h3 className="text-xl sm:text-2xl font-bold text-gray-800 text-center">
-                    {destinations[currentSlide].name}
-                  </h3>
-                  <div className="flex items-center justify-center gap-2">
-                    <span className="text-xs sm:text-sm text-gray-600 font-semibold opacity-80">
-                      from
-                    </span>
-                    <span className="text-xl sm:text-2xl font-bold text-orange-500">
-                      {destinations[currentSlide].price}
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-center gap-6 sm:gap-8 opacity-60 text-xs sm:text-sm">
-                    <div className="flex items-center gap-1">
-                      <span className="text-xl sm:text-2xl">📅</span>
-                      <span className="text-orange-500 font-semibold">
-                        EVERY DAY
-                      </span>
+              {destinations.map((dest, index) => (
+                <Link
+                  key={dest.id}
+                  to={`/destination/${dest.id}`}
+                  className="flex-shrink-0 w-full px-1"
+                >
+                  <div className="flex flex-col gap-3 md:gap-4">
+                    <div className="w-full h-72 sm:h-80 rounded-2xl overflow-hidden shadow-md">
+                      <img
+                        src={dest.images[0]}
+                        alt={dest.name}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
-                    <div className="flex items-center gap-1">
-                      <span className="text-xl sm:text-2xl">👥</span>
-                      <span className="text-orange-500 font-semibold">
-                        3-10 PP
-                      </span>
+                    <div className="flex flex-col gap-2 md:gap-3 px-1">
+                      <h3 className="text-xl sm:text-2xl font-bold text-gray-800 text-center">
+                        {dest.name}
+                      </h3>
+                      <div className="flex items-center justify-center gap-2">
+                        <span className="text-xs sm:text-sm text-gray-600 font-semibold opacity-80">
+                          from
+                        </span>
+                        <span className="text-xl sm:text-2xl font-bold text-orange-500">
+                          {dest.price}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-center gap-6 sm:gap-8 opacity-60 text-xs sm:text-sm">
+                        <div className="flex items-center gap-1">
+                          <span className="text-xl sm:text-2xl">📅</span>
+                          <span className="text-orange-500 font-semibold">
+                            EVERY DAY
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <span className="text-xl sm:text-2xl">👥</span>
+                          <span className="text-orange-500 font-semibold">
+                            3-10 PP
+                          </span>
+                        </div>
+                      </div>
+                      <p className="text-gray-800 text-sm sm:text-base leading-relaxed text-center">
+                        {dest.description}
+                      </p>
                     </div>
                   </div>
-                  <p className="text-gray-800 text-sm sm:text-base leading-relaxed text-center">
-                    {destinations[currentSlide].description}
-                  </p>
-                </div>
-              </div>
-            </Link>
+                </Link>
+              ))}
+            </div>
             <div className="flex justify-center gap-2 mt-6">
               {destinations.map((_, index) => (
                 <button
