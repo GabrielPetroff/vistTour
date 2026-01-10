@@ -13,11 +13,12 @@ import {
   X,
   MapPin,
 } from 'lucide-react';
-import { Outlet } from 'react-router';
+import { Outlet, useLocation } from 'react-router';
 
 export default function Layout() {
   const [activeTab, setActiveTab] = useState('flights');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   return (
     <div className="w-full bg-white">
@@ -43,26 +44,43 @@ export default function Layout() {
               <a href="/" className="text-gray-900 font-semibold text-xl">
                 Home
               </a>
-              <div className="h-1 w-16 bg-orange-500 mt-1"></div>
+              {location.pathname === '/' && (
+                <div className="h-1 w-16 bg-orange-500 mt-1"></div>
+              )}
             </div>
-            <a
-              href="/about"
-              className="text-gray-900 font-semibold text-xl cursor-pointer hover:text-orange-500 transition"
-            >
-              About Us
-            </a>
-            <a
-              href="/destinations"
-              className="text-gray-900 font-semibold text-xl cursor-pointer hover:text-orange-500 transition"
-            >
-              Tour Packages
-            </a>
-            <a
-              href="/contact"
-              className="text-gray-900 font-semibold text-xl cursor-pointer hover:text-orange-500 transition"
-            >
-              Contact Us
-            </a>
+            <div className="flex flex-col items-center gap-0">
+              <a
+                href="/about"
+                className="text-gray-900 font-semibold text-xl cursor-pointer hover:text-orange-500 transition"
+              >
+                About Us
+              </a>
+              {location.pathname === '/about' && (
+                <div className="h-1 w-16 bg-orange-500 mt-1"></div>
+              )}
+            </div>
+            <div className="flex flex-col items-center gap-0">
+              <a
+                href="/destinations"
+                className="text-gray-900 font-semibold text-xl cursor-pointer hover:text-orange-500 transition"
+              >
+                Tour Packages
+              </a>
+              {location.pathname === '/destinations' && (
+                <div className="h-1 w-16 bg-orange-500 mt-1"></div>
+              )}
+            </div>
+            <div className="flex flex-col items-center gap-0">
+              <a
+                href="/contact"
+                className="text-gray-900 font-semibold text-xl cursor-pointer hover:text-orange-500 transition"
+              >
+                Contact Us
+              </a>
+              {location.pathname === '/contact' && (
+                <div className="h-1 w-16 bg-orange-500 mt-1"></div>
+              )}
+            </div>
           </nav>
 
           {/* Desktop Buttons */}
@@ -103,26 +121,43 @@ export default function Layout() {
                 <a href="/" className="text-gray-900 font-semibold text-lg">
                   Home
                 </a>
-                <div className="h-1 w-12 bg-orange-500 mt-1"></div>
+                {location.pathname === '/' && (
+                  <div className="h-1 w-12 bg-orange-500 mt-1"></div>
+                )}
               </div>
-              <a
-                href="/about"
-                className="text-gray-900 font-semibold text-lg py-3 border-b border-gray-200 cursor-pointer hover:text-orange-500 transition"
-              >
-                About Us
-              </a>
-              <a
-                href="/destinations"
-                className="text-gray-900 font-semibold text-lg py-3 border-b border-gray-200 cursor-pointer hover:text-orange-500 transition"
-              >
-                Tour Packages
-              </a>
-              <a
-                href="/contact"
-                className="text-gray-900 font-semibold text-lg py-3 border-b border-gray-200 cursor-pointer hover:text-orange-500 transition"
-              >
-                Contact Us
-              </a>
+              <div className="flex flex-col items-start py-3 border-b border-gray-200">
+                <a
+                  href="/about"
+                  className="text-gray-900 font-semibold text-lg cursor-pointer hover:text-orange-500 transition"
+                >
+                  About Us
+                </a>
+                {location.pathname === '/about' && (
+                  <div className="h-1 w-12 bg-orange-500 mt-1"></div>
+                )}
+              </div>
+              <div className="flex flex-col items-start py-3 border-b border-gray-200">
+                <a
+                  href="/destinations"
+                  className="text-gray-900 font-semibold text-lg cursor-pointer hover:text-orange-500 transition"
+                >
+                  Tour Packages
+                </a>
+                {location.pathname === '/destinations' && (
+                  <div className="h-1 w-12 bg-orange-500 mt-1"></div>
+                )}
+              </div>
+              <div className="flex flex-col items-start py-3 border-b border-gray-200">
+                <a
+                  href="/contact"
+                  className="text-gray-900 font-semibold text-lg cursor-pointer hover:text-orange-500 transition"
+                >
+                  Contact Us
+                </a>
+                {location.pathname === '/contact' && (
+                  <div className="h-1 w-12 bg-orange-500 mt-1"></div>
+                )}
+              </div>
 
               {/* Mobile Buttons */}
               <div className="flex flex-col gap-3 mt-4">

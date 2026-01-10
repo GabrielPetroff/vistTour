@@ -4,7 +4,7 @@ import NotFound from '../components/pages/NotFoundPage.jsx';
 import HomePage from '../components/pages/HomePage.jsx';
 import DestinationPage from '../components/pages/DestinationPage.jsx';
 import AboutUsPage from '../components/pages/AboutUsPage.jsx';
-
+import ContactPage from '../components/pages/ContactUsPage.jsx';
 const routes = createBrowserRouter([
   {
     path: '/',
@@ -14,6 +14,7 @@ const routes = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: 'destination/:id', element: <DestinationPage /> },
       { path: '/about', element: <AboutUsPage /> },
+      { path: '/contact', element: <ContactPage /> },
     ],
   },
 ]);
