@@ -110,15 +110,6 @@ export default function HomePage() {
   };
   return (
     <div className="flex flex-col bg-gray-100">
-      {/* Hero Section */}
-      <div className="flex-1 flex flex-col justify-center items-center px-4 sm:px-8 py-12 sm:py-16 text-center bg-gradient-to-b from-teal-600 to-teal-700">
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
-          Your Dream Vacation Awaits
-        </h1>
-        <p className="text-xl sm:text-2xl lg:text-3xl text-white font-serif">
-          Explore the World with us.
-        </p>
-      </div>
       {/* Search Section */}
       {/* <div className="relative -mt-8 sm:-mt-12 flex justify-center px-4 sm:px-8 pb-8">
         <div className="w-full max-w-4xl">

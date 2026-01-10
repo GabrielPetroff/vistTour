@@ -22,99 +22,47 @@ export default function Layout() {
   return (
     <div className="w-full bg-white">
       {/* Header */}
-      {/* <header className="relative w-full bg-gradient-to-b from-teal-600 to-teal-700"> */}
-      {/* Top Navigation */}
-      {/* <div className="flex justify-between items-center px-4 sm:px-8 py-4 bg-black bg-opacity-20">
-          <div className="flex gap-3 sm:gap-6">
-            <Instagram className="w-5 h-5 sm:w-6 sm:h-6 text-white cursor-pointer hover:opacity-80" />
-            <Twitter className="w-5 h-5 sm:w-6 sm:h-6 text-white cursor-pointer hover:opacity-80" />
-            <Facebook className="w-5 h-5 sm:w-6 sm:h-6 text-white cursor-pointer hover:opacity-80" />
-          </div>
-          <div className="hidden sm:flex gap-4 lg:gap-6 text-xs lg:text-sm text-white">
-            <div className="flex items-center gap-1">
-              <Phone className="w-4 h-4" />
-              <span>+1 334 445 623</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <Mail className="w-4 h-4" />
-              <span>contact@startravels.com</span>
-            </div>
-          </div>
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="sm:hidden text-white"
-          >
-            {mobileMenuOpen ? <X /> : <Menu />}
-          </button> */}
-      {/* </div> */}
-
-      {/* Mobile Menu */}
-      {/* {mobileMenuOpen && (
-          <nav className="sm:hidden flex flex-col gap-2 px-4 py-4 bg-black bg-opacity-10">
-            <a href="/" className="text-white hover:opacity-80 py-2">
-              Home
-            </a>
-            <a href="#" className="text-white hover:opacity-80 py-2">
-              Packages
-            </a>http://localhost:5173/destination/1
-            <a href="#" className="text-white hover:opacity-80 py-2">
-              Tours
-            </a>
-            <a href="#" className="text-white hover:opacity-80 py-2">
-              About Us
-            </a>
-            <a href="#" className="text-white hover:opacity-80 py-2">
-              Contact
-            </a>
-          </nav>
-        )} */}
-
-      {/* Main Navigation */}
-      {/* <nav className="hidden sm:flex gap-6 lg:gap-12 px-4 sm:px-8 py-6 text-white text-sm lg:text-lg">
-          <a href="/" className="hover:opacity-80">
-            Home
-          </a>
-          <a href="#" className="hover:opacity-80">
-            Packages
-          </a>
-          <a href="#" className="hover:opacity-80">
-            Tours
-          </a>
-          <a href="#" className="hover:opacity-80">
-            About Us
-          </a>
-          <a href="#" className="hover:opacity-80">
-            Contact
-          </a>
-        </nav> */}
-      {/* </header> */}
 
       <header className="fixed top-0 w-full bg-white bg-opacity-20 backdrop-blur-sm z-50">
         <div className="flex flex-row items-center justify-between px-4 sm:px-8 lg:px-12 py-4 sm:py-6 lg:h-[170px]">
           {/* Logo */}
-          <div className="flex-shrink-0 w-20 h-16 sm:w-28 sm:h-24 lg:w-[133px] lg:h-[130px] flex items-center justify-center">
+          <a
+            href="/"
+            className="flex-shrink-0 w-20 h-16 sm:w-28 sm:h-24 lg:w-[133px] lg:h-[130px] flex items-center justify-center"
+          >
             <img
               src="/vist-logo.png"
               alt="Vist Tour Logo"
               className="max-w-full max-h-full object-contain"
             />
-          </div>
+          </a>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex flex-row items-center gap-8 flex-1 justify-center">
             <div className="flex flex-col items-center gap-0">
-              <span className="text-gray-900 font-semibold text-xl">Home</span>
+              <a href="/" className="text-gray-900 font-semibold text-xl">
+                Home
+              </a>
               <div className="h-1 w-16 bg-orange-500 mt-1"></div>
             </div>
-            <span className="text-gray-900 font-semibold text-xl cursor-pointer hover:text-orange-500 transition">
+            <a
+              href="/about"
+              className="text-gray-900 font-semibold text-xl cursor-pointer hover:text-orange-500 transition"
+            >
               About Us
-            </span>
-            <span className="text-gray-900 font-semibold text-xl cursor-pointer hover:text-orange-500 transition">
+            </a>
+            <a
+              href="/destinations"
+              className="text-gray-900 font-semibold text-xl cursor-pointer hover:text-orange-500 transition"
+            >
               Tour Packages
-            </span>
-            <span className="text-gray-900 font-semibold text-xl cursor-pointer hover:text-orange-500 transition">
+            </a>
+            <a
+              href="/contact"
+              className="text-gray-900 font-semibold text-xl cursor-pointer hover:text-orange-500 transition"
+            >
               Contact Us
-            </span>
+            </a>
           </nav>
 
           {/* Desktop Buttons */}
@@ -152,20 +100,29 @@ export default function Layout() {
           <div className="lg:hidden bg-white bg-opacity-95 backdrop-blur-sm border-t border-gray-200">
             <nav className="flex flex-col px-4 py-4">
               <div className="flex flex-col items-start py-3 border-b border-gray-200">
-                <span className="text-gray-900 font-semibold text-lg">
+                <a href="/" className="text-gray-900 font-semibold text-lg">
                   Home
-                </span>
+                </a>
                 <div className="h-1 w-12 bg-orange-500 mt-1"></div>
               </div>
-              <span className="text-gray-900 font-semibold text-lg py-3 border-b border-gray-200 cursor-pointer hover:text-orange-500 transition">
+              <a
+                href="/about"
+                className="text-gray-900 font-semibold text-lg py-3 border-b border-gray-200 cursor-pointer hover:text-orange-500 transition"
+              >
                 About Us
-              </span>
-              <span className="text-gray-900 font-semibold text-lg py-3 border-b border-gray-200 cursor-pointer hover:text-orange-500 transition">
+              </a>
+              <a
+                href="/destinations"
+                className="text-gray-900 font-semibold text-lg py-3 border-b border-gray-200 cursor-pointer hover:text-orange-500 transition"
+              >
                 Tour Packages
-              </span>
-              <span className="text-gray-900 font-semibold text-lg py-3 border-b border-gray-200 cursor-pointer hover:text-orange-500 transition">
+              </a>
+              <a
+                href="/contact"
+                className="text-gray-900 font-semibold text-lg py-3 border-b border-gray-200 cursor-pointer hover:text-orange-500 transition"
+              >
                 Contact Us
-              </span>
+              </a>
 
               {/* Mobile Buttons */}
               <div className="flex flex-col gap-3 mt-4">
