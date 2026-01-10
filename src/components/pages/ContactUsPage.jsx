@@ -83,18 +83,29 @@ export default function ContactPage() {
       }, 5000);
     } catch (err) {
       console.error('EmailJS Error:', err);
-      
+
       // More specific error messages
       if (!window.emailjs) {
-        setError('Email service not loaded. Please refresh the page and try again.');
+        setError(
+          'Email service not loaded. Please refresh the page and try again.'
+        );
       } else if (err.status === 412) {
-        setError('Email service authentication error. The administrator needs to reconnect the email service in EmailJS dashboard.');
-      } else if (err.text && err.text.includes('insufficient authentication scopes')) {
-        setError('Email service needs to be reconnected with proper permissions. Please contact the administrator.');
+        setError(
+          'Email service authentication error. The administrator needs to reconnect the email service in EmailJS dashboard.'
+        );
+      } else if (
+        err.text &&
+        err.text.includes('insufficient authentication scopes')
+      ) {
+        setError(
+          'Email service needs to be reconnected with proper permissions. Please contact the administrator.'
+        );
       } else if (err.text) {
         setError(`Failed to send: ${err.text}`);
       } else {
-        setError('Failed to send message. Please check your internet connection and try again.');
+        setError(
+          'Failed to send message. Please check your internet connection and try again.'
+        );
       }
     } finally {
       setLoading(false);
