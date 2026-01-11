@@ -95,7 +95,12 @@ export default function Layout() {
 
             {/* Login Button */}
             <button className="px-3 py-2 rounded-full border border-gray-900 hover:bg-gray-900 hover:bg-opacity-10 transition">
-              <span className="text-gray-900 font-semibold text-xl">Login</span>
+              <a
+                href="/details"
+                className="text-gray-900 font-semibold text-xl"
+              >
+                Login
+              </a>
             </button>
 
             {/* Sign Up Button */}
@@ -168,9 +173,12 @@ export default function Layout() {
                   <ChevronDown size={20} className="text-gray-900 opacity-60" />
                 </div>
                 <button className="w-full px-4 py-2 rounded-full border border-gray-900 hover:bg-gray-900 hover:bg-opacity-10 transition">
-                  <span className="text-gray-900 font-semibold text-lg">
+                  <a
+                    href="/details"
+                    className="text-gray-900 font-semibold text-lg"
+                  >
                     Login
-                  </span>
+                  </a>
                 </button>
                 <button className="w-full px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-600 transition">
                   <span className="text-white font-semibold text-lg">

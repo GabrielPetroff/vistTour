@@ -8,9 +8,20 @@
       "duration": "7 дни",
       "description": "The city of lights and love, known for its art, fashion, and culture.",
       "images": [
-        "/johnny-africa-WG7yn5Wi7ww-unsplash (1).jpg",
-        "/maria-ivanova-TbhkJftacjc-unsplash.jpg",
-        "/henrique-ferreira-RKsLQoSnuTc-unsplash.jpg"
+        "/johnny-africa-WG7yn5Wi7ww-unsplash-1.jpg",
+        "/val-vesa-QUrg6FRifM0-unsplash.jpg",
+        "/daniel-j-schwarz-5ndwz2DeMD4-unsplash.jpg",
+        "/valdemaras-d-3DR7a8afMYA-unsplash.jpg"
+      ],
+      "gallery": [
+        "/johnny-africa-WG7yn5Wi7ww-unsplash-1.jpg",
+        "/val-vesa-QUrg6FRifM0-unsplash.jpg",
+        "/daniel-j-schwarz-5ndwz2DeMD4-unsplash.jpg",
+        "/valdemaras-d-3DR7a8afMYA-unsplash.jpg",
+        "/sophie-dale-Ays4fNtXtks-unsplash.jpg",
+        "/fotis-fotopoulos-NptW7VYe73E-unsplash.jpg",
+        "/stock-birken-2zJV7f_MUw8-unsplash.jpg",
+        "/stock-birken-lA-swYaRKs8-unsplash.jpg"
       ]
     },
     {
@@ -39,19 +50,10 @@
       "duration": "7 дни",
       "description": "The city of lights and love, known for its art, fashion, and culture.",
       "images": [
-        "/johnny-africa-WG7yn5Wi7ww-unsplash (1).jpg",
+        "/johnny-africa-WG7yn5Wi7ww-unsplash-1.jpg",
         "/maria-ivanova-TbhkJftacjc-unsplash.jpg",
         "/henrique-ferreira-RKsLQoSnuTc-unsplash.jpg"
       ]
-    },
-    {
-      "id": 2,
-      "name": "Белград",
-      "country": "Сърбия",
-      "price": "€399",
-      "duration": "3 дни",
-      "description": "A bustling metropolis that blends the ultramodern with traditional culture.",
-      "images": ["/maria-ivanova-TbhkJftacjc-unsplash.jpg"]
     },
     {
       "id": 3,

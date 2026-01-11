@@ -241,7 +241,7 @@ export default function HomePage() {
             {destinations.map((dest) => (
               <Link
                 key={dest.id}
-                to={`/destination/${dest.id}`}
+                to={`/details/${dest.id}`}
                 className="flex flex-col gap-3 md:gap-4 group"
               >
                 <div className="w-full h-64 md:h-72 rounded-2xl overflow-hidden shadow-md group-hover:shadow-xl transition-shadow">
@@ -298,7 +298,7 @@ export default function HomePage() {
               {destinations.map((dest) => (
                 <Link
                   key={dest.id}
-                  to={`/destination/${dest.id}`}
+                  to={`/details/${dest.id}`}
                   className="flex-shrink-0 w-[calc(25%-18px)] flex flex-col gap-4 group"
                 >
                   <div className="w-full h-80 xl:h-96 rounded-3xl overflow-hidden shadow-md group-hover:shadow-xl transition-shadow">
@@ -354,7 +354,7 @@ export default function HomePage() {
               {destinations.map((dest, index) => (
                 <Link
                   key={dest.id}
-                  to={`/destination/${dest.id}`}
+                  to={`/details/${dest.id}`}
                   className="flex-shrink-0 w-full px-1"
                 >
                   <div className="flex flex-col gap-3 md:gap-4">
