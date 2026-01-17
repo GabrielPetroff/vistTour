@@ -128,10 +128,50 @@ export default function WineTastingTour() {
 
         {/* Details Section */}
         <div className="mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 mb-4 sm:mb-6 md:mb-8">Details</h2>
-          <p className="text-sm sm:text-base md:text-lg text-gray-900 leading-relaxed mb-6 sm:mb-8">
-            {destination.description}
-          </p>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 mb-4 sm:mb-6 md:mb-8">
+            Tour Program
+          </h2>
+
+          {destination.tourProgram && destination.tourProgram.length > 0 ? (
+            <div className="w-full max-w-4xl mx-auto p-4 sm:p-6 md:p-8 bg-white rounded-lg shadow-lg mb-6 sm:mb-8">
+              <h3 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 text-orange-500">
+                {destination.name}
+              </h3>
+
+              <div className="relative">
+                <div className="absolute left-4 sm:left-8 top-12 bottom-0 w-1 bg-gradient-to-b from-orange-400 to-orange-600"></div>
+
+                <div className="space-y-6 sm:space-y-8">
+                  {destination.tourProgram.map((program, index) => (
+                    <div key={index} className="relative pl-16 sm:pl-24">
+                      <div className="absolute left-0 top-2 w-12 h-12 sm:w-16 sm:h-16 bg-white border-4 border-orange-500 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow">
+                        <span className="text-base sm:text-lg font-bold text-orange-500">
+                          {typeof program === 'object' ? program.id : index + 1}
+                        </span>
+                      </div>
+
+                      <div className="bg-gray-50 rounded-lg shadow-md p-4 sm:p-6 border-l-4 border-orange-500 hover:shadow-lg transition-shadow">
+                        {typeof program === 'object' && program.title && (
+                          <h4 className="text-lg sm:text-xl font-bold text-gray-800 mb-3">
+                            {program.title}
+                          </h4>
+                        )}
+                        <p className="text-sm sm:text-base text-gray-700 leading-relaxed whitespace-pre-wrap">
+                          {typeof program === 'object'
+                            ? program.description
+                            : program}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <p className="text-sm sm:text-base md:text-lg text-gray-900 leading-relaxed mb-6 sm:mb-8">
+              {destination.description}
+            </p>
+          )}
 
           {/* Details Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-2xl">
@@ -171,14 +211,20 @@ export default function WineTastingTour() {
             </div>
 
             <div className="flex items-center gap-2 sm:gap-3">
-              <Ticket size={20} className="text-orange-500 opacity-80 sm:w-6 sm:h-6" />
+              <Ticket
+                size={20}
+                className="text-orange-500 opacity-80 sm:w-6 sm:h-6"
+              />
               <span className="text-sm sm:text-base md:text-lg font-bold text-gray-900">
                 Entry Fees: lorem ipsum
               </span>
             </div>
 
             <div className="flex items-center gap-2 sm:gap-3 col-span-1 sm:col-span-2">
-              <Bus size={20} className="text-orange-500 opacity-80 sm:w-6 sm:h-6" />
+              <Bus
+                size={20}
+                className="text-orange-500 opacity-80 sm:w-6 sm:h-6"
+              />
               <span className="text-sm sm:text-base md:text-lg font-bold text-gray-900">
                 EntryTransportation: Bus
               </span>
@@ -189,7 +235,9 @@ export default function WineTastingTour() {
         {/* Gallery Section */}
         <div className="mb-8 sm:mb-12">
           <div className="flex justify-between items-center mb-6 sm:mb-8">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900">Gallery</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900">
+              Gallery
+            </h2>
             <div className="flex gap-3 sm:gap-5">
               <button
                 onClick={() => {
@@ -199,7 +247,10 @@ export default function WineTastingTour() {
                 }}
                 className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-gray-200 flex items-center justify-center hover:bg-gray-300 transition"
               >
-                <ChevronLeft size={20} className="text-gray-900 opacity-60 sm:w-6 sm:h-6" />
+                <ChevronLeft
+                  size={20}
+                  className="text-gray-900 opacity-60 sm:w-6 sm:h-6"
+                />
               </button>
               <button
                 onClick={() => {
@@ -227,7 +278,10 @@ export default function WineTastingTour() {
                   groups.push(gallery.slice(i, i + 4));
                 }
                 return groups.map((images, idx) => (
-                  <div key={idx} className="flex-shrink-0 flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6">
+                  <div
+                    key={idx}
+                    className="flex-shrink-0 flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6"
+                  >
                     {/* Large image */}
                     {images[0] && (
                       <div
@@ -281,7 +335,10 @@ export default function WineTastingTour() {
                 onClick={prevReview}
                 className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-gray-200 flex items-center justify-center hover:bg-gray-300 transition"
               >
-                <ChevronLeft size={20} className="text-gray-900 opacity-60 sm:w-6 sm:h-6" />
+                <ChevronLeft
+                  size={20}
+                  className="text-gray-900 opacity-60 sm:w-6 sm:h-6"
+                />
               </button>
               <button
                 onClick={nextReview}
